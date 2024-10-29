@@ -1370,6 +1370,7 @@ GameObject:
   - component: {fileID: 633868812}
   - component: {fileID: 633868817}
   - component: {fileID: 633868816}
+  - component: {fileID: 633868818}
   m_Layer: 5
   m_Name: Charge Bar
   m_TagString: Untagged
@@ -1482,7 +1483,8 @@ MonoBehaviour:
         m_CallState: 2
   barScript: {fileID: 633868817}
   maxCharge: 500
-  currentCharge: 0
+  currentCharge: 500
+  drainTime: 1.21
 --- !u!114 &633868817
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1498,8 +1500,38 @@ MonoBehaviour:
   effectBar: {fileID: 1625531803}
   actualBar: {fileID: 1913612926}
   catchupTime: 1
-  lossColor: {r: 0.85490197, g: 0.4392157, b: 0.8392157, a: 1}
+  lossColor: {r: 0.6320754, g: 0.08050018, b: 0.15818644, a: 1}
   gainColor: {r: 0.13333334, g: 0.6666667, b: 0.26666668, a: 1}
+--- !u!114 &633868818
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 633868810}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e52de21a22b6dd44c9cc19f810c65059, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Events:
+    m_Signals:
+    - {fileID: 11400000, guid: 3c4069ee7b18997429e62fbfe4f48258, type: 2}
+    m_Events:
+    - m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 633868816}
+          m_TargetAssemblyTypeName: SCR_ChargeManager, Assembly-CSharp
+          m_MethodName: Drain
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
 --- !u!1 &676949598
 GameObject:
   m_ObjectHideFlags: 0
@@ -3787,6 +3819,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1429786006}
   - component: {fileID: 1429786007}
+  - component: {fileID: 1429786008}
   m_Layer: 0
   m_Name: First Charge
   m_TagString: Untagged
@@ -3829,8 +3862,55 @@ PlayableDirector:
     value: {fileID: 5111067202373352471}
   - key: {fileID: 200376922970162834, guid: 21500b1bb44c48540bc36eb79433140b, type: 2}
     value: {fileID: 7717102635598645313}
+  - key: {fileID: -3353878603414987213, guid: 21500b1bb44c48540bc36eb79433140b, type: 2}
+    value: {fileID: 633868818}
   m_ExposedReferences:
     m_References: []
+--- !u!114 &1429786008
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1429786005}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e52de21a22b6dd44c9cc19f810c65059, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Events:
+    m_Signals:
+    - {fileID: 11400000, guid: 21a16b53a9218184b88c72be25c35a55, type: 2}
+    - {fileID: 11400000, guid: a5383be3c9815374bb2b83609836a789, type: 2}
+    m_Events:
+    - m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 3242374417890435499}
+          m_TargetAssemblyTypeName: SCR_ParticleStopper, Assembly-CSharp
+          m_MethodName: StopParticle
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+    - m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 3949486234681413889}
+          m_TargetAssemblyTypeName: Unlock, Assembly-CSharp
+          m_MethodName: Allow
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
 --- !u!1 &1439958712
 GameObject:
   m_ObjectHideFlags: 0
@@ -4337,8 +4417,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0.2162342, y: -0.05847168}
-  m_SizeDelta: {x: -2.1631012, y: -1.4448242}
+  m_AnchoredPosition: {x: 0.2162342, y: -1.0366211}
+  m_SizeDelta: {x: -2.1631, y: -3.3953}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1625531801
 MonoBehaviour:
@@ -4393,7 +4473,7 @@ MonoBehaviour:
   barImg: {fileID: 1625531801}
   current: 0
   max: 10
-  lerpStrength: 0.15
+  lerpStrength: 0.08
   empty: {fileID: 1950127303}
   full: {fileID: 1625573300}
 --- !u!1 &1625573299
@@ -5101,8 +5181,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -0.19459915, y: 0.058288574}
-  m_SizeDelta: {x: 2.1631, y: 1.4448}
+  m_AnchoredPosition: {x: -0.19459915, y: 0.40722656}
+  m_SizeDelta: {x: 2.1631, y: -1.2908}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2041758195
 MonoBehaviour:
@@ -5373,6 +5453,7 @@ GameObject:
   - component: {fileID: 2543994222094170428}
   - component: {fileID: 3242374417890435498}
   - component: {fileID: 1338555400891012369}
+  - component: {fileID: 3242374417890435499}
   m_Layer: 0
   m_Name: Sparks Base
   m_TagString: Untagged
@@ -7600,7 +7681,7 @@ ParticleSystem:
           inWeight: 0
           outWeight: 0
         - serializedVersion: 3
-          time: 1
+          time: 0.6091614
           value: 1
           inSlope: 2.8026495
           outSlope: 2.8026495
@@ -7608,6 +7689,15 @@ ParticleSystem:
           weightedMode: 0
           inWeight: 0.11572063
           outWeight: 0
+        - serializedVersion: 3
+          time: 0.6223798
+          value: -0.05716914
+          inSlope: 1.8201859
+          outSlope: 1.8201859
+          tangentMode: 0
+          weightedMode: 0
+          inWeight: 0.33333334
+          outWeight: 0.33333334
         m_PreInfinity: 2
         m_PostInfinity: 2
         m_RotationOrder: 4
@@ -10326,6 +10416,19 @@ ParticleSystem:
         m_PostInfinity: 2
         m_RotationOrder: 4
     vectorLabel1_3: W
+--- !u!114 &3242374417890435499
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1697681867298026694}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4f72266e5196f9a4c9cbe61429236348, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  particle: {fileID: 3242374417890435498}
 --- !u!212 &3342927913736680906
 SpriteRenderer:
   m_ObjectHideFlags: 0
