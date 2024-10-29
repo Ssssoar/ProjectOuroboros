@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
+public enum Phoneme {ah,eh,ooh,juh,ph,mmh}
 //This one overrides the FaceSprite Script when it is enabled
 public class SCR_LipSync : MonoBehaviour{
     [System.Serializable]
@@ -15,7 +16,6 @@ public class SCR_LipSync : MonoBehaviour{
         public Sprite ph;
         public Sprite mmh;
     }
-    public enum Phoneme {ah,eh,ooh,juh,ph,mmh}
 
     [Header("References")]
     [SerializeField] SCR_FaceSprite toOverride;
@@ -28,17 +28,17 @@ public class SCR_LipSync : MonoBehaviour{
     void Update(){
         if (!DEBUG) return;
         if (Input.GetKeyDown("q"))
-            SetPhoneme(Phoneme.ah);
+            SetPhoneme((int)Phoneme.ah);
         if (Input.GetKeyDown("w"))
-            SetPhoneme(Phoneme.eh);
+            SetPhoneme((int)Phoneme.eh);
         if (Input.GetKeyDown("e"))
-            SetPhoneme(Phoneme.ooh);
+            SetPhoneme((int)Phoneme.ooh);
         if (Input.GetKeyDown("a"))
-            SetPhoneme(Phoneme.juh);
+            SetPhoneme((int)Phoneme.juh);
         if (Input.GetKeyDown("s"))
-            SetPhoneme(Phoneme.ph);
+            SetPhoneme((int)Phoneme.ph);
         if (Input.GetKeyDown("d"))
-            SetPhoneme(Phoneme.mmh);
+            SetPhoneme((int)Phoneme.mmh);
         if (
             (!Input.GetKey("q"))&&
             (!Input.GetKey("w"))&&
@@ -51,7 +51,8 @@ public class SCR_LipSync : MonoBehaviour{
         }
     }
 
-    public void SetPhoneme(Phoneme phon){
+    public void SetPhoneme(int i){
+        Phoneme phon = (Phoneme)i;
         toOverride.overtake = true;
         toOverride.sr.sprite = GetSprite(faceScript.currentMood,phon);
     }
@@ -82,6 +83,7 @@ public class SCR_LipSync : MonoBehaviour{
                 }
             }
         }
+        Debug.Log("WHOOPS");
         return null;
     }
 }
