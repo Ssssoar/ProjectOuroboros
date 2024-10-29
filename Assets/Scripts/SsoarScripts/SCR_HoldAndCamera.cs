@@ -1,13 +1,28 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Playables;
+using UnityEngine.Events;
+
 
 public class SCR_HoldAndCamera : MonoBehaviour{
+    [Header("References")]
+    [SerializeField] PlayableDirector director;
+    [SerializeField] UnityEvent onUnreadyRelease;
+
+    bool readied = false;
+
     void OnMouseDown(){
-        Debug.Log("pressed");
+        director.Play();
     }
 
     void OnMouseUp(){
-        Debug.Log("Released");
+        if (readied) return;
+        director.Stop();
+        onUnreadyRelease?.Invoke();
+    }
+
+    public void Readied(){
+        readied = true;
     }
 }

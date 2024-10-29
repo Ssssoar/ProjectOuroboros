@@ -65,4 +65,10 @@ public class SCR_ChargeManager : MonoBehaviour{
         drain = true;
         drainTimer = drainTime/maxCharge;
     }
+
+    public void CancelDrain(){
+        drain = false;
+        currentCharge = maxCharge;
+        barScript.ChangeValue(currentCharge,maxCharge);
+    }
 }

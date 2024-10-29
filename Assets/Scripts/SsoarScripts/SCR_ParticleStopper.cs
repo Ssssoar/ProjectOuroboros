@@ -9,4 +9,8 @@ public class SCR_ParticleStopper : MonoBehaviour{
     public void StopParticle(){
         particle.Stop();
     }
+
+    public void StartParticle(){
+        particle.Play();
+    }
 }
