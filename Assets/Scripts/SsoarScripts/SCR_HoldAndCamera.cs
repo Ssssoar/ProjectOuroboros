@@ -13,6 +13,7 @@ public class SCR_HoldAndCamera : MonoBehaviour{
     bool readied = false;
 
     void OnMouseDown(){
+        if (readied) return;
         director.Play();
     }
 
