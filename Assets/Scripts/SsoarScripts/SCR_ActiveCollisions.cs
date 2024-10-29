@@ -9,6 +9,7 @@ public class SCR_ActiveCollisions : MonoBehaviour{
     [SerializeField] ParticleSystem[] particles;
     [SerializeField] float maxVelocity;
     [SerializeField] SCR_RotManager rotScript;
+    [SerializeField] SCR_Glow glowScript;
     
     List<SCR_SpeedCalc> activeCollisions = new List<SCR_SpeedCalc>();
     List<ParticleSystem> activeParticles = new List<ParticleSystem>();
@@ -31,6 +32,7 @@ public class SCR_ActiveCollisions : MonoBehaviour{
             activeParticles.RemoveAt(index);
             particleRanks.RemoveAt(index);
             UpdateRotations();
+            UpdateGlow();
         }
     }
 
@@ -64,11 +66,20 @@ public class SCR_ActiveCollisions : MonoBehaviour{
                 particleRanks.Add(particleRank);
             }
             UpdateRotations();
+            UpdateGlow();
         }
     }
 
     void UpdateRotations(){
         rotScript.SetSpeed(GetMaxRank()+1);
+    }
+
+    void UpdateGlow(){
+        if (GetMaxRank() >= 1)
+            glowScript.Glow();
+        else
+            glowScript.Dull();
+            Debug.Log("???");
     }
 
     int GetMaxRank(){

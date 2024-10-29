@@ -218,6 +218,7 @@ GameObject:
   - component: {fileID: 45096243}
   - component: {fileID: 45096244}
   - component: {fileID: 45096245}
+  - component: {fileID: 45096246}
   m_Layer: 0
   m_Name: Circle
   m_TagString: Untagged
@@ -282,7 +283,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 1a015c42334fa08479a68d28a2136a05, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.735849, g: 0.735849, b: 0.735849, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -312,6 +313,22 @@ MonoBehaviour:
   upDamping: 0.8
   downDamping: 0.05
   clockwise: 1
+--- !u!114 &45096246
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 45096242}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c635237b52be4744790faa8fa2f8a843, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sr: {fileID: 45096244}
+  glow: {r: 0.7372549, g: 0.7372549, b: 0.7372549, a: 1}
+  dull: {r: 1, g: 1, b: 1, a: 1}
+  lerpStrength: 0.8
 --- !u!4 &110045927 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8081476495444678252, guid: 5eee2e2cb3d51f84caa13d8aed2dac3c, type: 3}
@@ -1840,9 +1857,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_IsGlobal: 1
-  priority: -0.06
+  priority: 0
   blendDistance: 0
-  weight: 0
+  weight: 1
   sharedProfile: {fileID: 11400000, guid: a6560a915ef98420e9faacc1c7438823, type: 2}
 --- !u!4 &832575519
 Transform:
@@ -2194,6 +2211,7 @@ MonoBehaviour:
   - {fileID: 1810800474}
   maxVelocity: 25
   rotScript: {fileID: 1097165037}
+  glowScript: {fileID: 45096246}
 --- !u!1 &977961918
 GameObject:
   m_ObjectHideFlags: 0
