@@ -14,6 +14,7 @@ public class Unlock : MonoBehaviour
     float maxDistance;
     bool llego;
     bool drageando;
+    bool allowed = false;
     
     private void Start()
     {
@@ -23,6 +24,7 @@ public class Unlock : MonoBehaviour
 
     void OnMouseDown()
     {
+        if (!allowed) return;
         if (llego) return;
         StopAllCoroutines();
         screenPoint = Camera.main.WorldToScreenPoint(gameObject.transform.position);
@@ -65,6 +67,7 @@ public class Unlock : MonoBehaviour
 
     private void OnMouseUp()
     {
+        if (!allowed) return;
         if (llego) return;
         drageando = false;
         StartCoroutine(Volver());
@@ -96,6 +99,9 @@ public class Unlock : MonoBehaviour
         }
     }
 
+    public void Allow(){
+        allowed = true;
+    }
 
 
 

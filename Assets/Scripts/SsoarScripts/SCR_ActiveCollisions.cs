@@ -79,7 +79,6 @@ public class SCR_ActiveCollisions : MonoBehaviour{
             glowScript.Glow();
         else
             glowScript.Dull();
-            Debug.Log("???");
     }
 
     int GetMaxRank(){
