@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.Linq; //for List<something>.Union
 
+public enum Mood {any,normal,angry,fear}
 public class SCR_FaceSpritesHandler : MonoBehaviour{
-    public enum Mood {any,normal,angry,fear}
 
     [System.Serializable]
     public struct PartGroup{
@@ -13,7 +13,6 @@ public class SCR_FaceSpritesHandler : MonoBehaviour{
         public List<Sprite> angerSprites;
         public List<Sprite> fearSprites;
         public List<Sprite> wildcardSprites;
-        bool lipSynced;
     }
 
     [Header("References")]
@@ -25,7 +24,7 @@ public class SCR_FaceSpritesHandler : MonoBehaviour{
 
     [Header("Variables")]
     float DEBUGTIMER = 0f;
-    Mood currentMood;
+    internal Mood currentMood;
 
 
     void Start(){

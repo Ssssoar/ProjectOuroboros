@@ -10,7 +10,7 @@ public class SCR_SpeedCalc : MonoBehaviour{
         prevPos = transform.position;
     }
 
-    void Update(){
+    void FixedUpdate(){
         float deltaPos = (prevPos - transform.position).magnitude;
         velocity = deltaPos / Time.deltaTime;
         prevPos = transform.position;

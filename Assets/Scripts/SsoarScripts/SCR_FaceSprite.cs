@@ -4,15 +4,17 @@ using UnityEngine;
 
 public class SCR_FaceSprite : MonoBehaviour{
     [Header("References")]
-    [SerializeField] SpriteRenderer sr;
+    public SpriteRenderer sr;
 
     [Header("Parameters")]
     [SerializeField] float changeChance = 0.2f;
 
     [Header("Variables")]
     List<Sprite> sprites = new List<Sprite>();
+    internal bool overtake = false;
 
     public void TryChange(){
+        if (overtake) return;
         if (Random.value <= changeChance)
             ChangeSprite();
     }
