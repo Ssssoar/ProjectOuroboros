@@ -12,16 +12,39 @@ public class SCR_HoldAndCamera : MonoBehaviour{
     [SerializeField] UnityEvent onUnreadyRelease;
     [SerializeField] CinemachineVirtualCamera defaultCam , focusCam;
 
+    [Header("Parameters")]
+    [SerializeField] float treshold;
+
+    [Header("Variables")]
+    Vector2 startPos;
+    Vector2 endPos;
+
+    
+
     bool readied = false;
 
+    void Update(){
+        if ((startPos != Vector2.zero)&&(readied)){
+            endPos = Input.mousePosition;
+            Vector2 displacement = endPos - startPos;
+            if (displacement.x >= treshold){
+                Debug.Log("HAPPENED");
+            }
+        }
+    }
+
     void OnMouseDown(){
-        if (readied) return;
+        if (readied) {
+            startPos = Input.mousePosition;
+            return;
+        }
         focusCam.Priority = 10;
         defaultCam.Priority = 0;
         director.Play();
     }
 
     void OnMouseUp(){
+        startPos = Vector2.zero;
         if (readied) return;
         focusCam.Priority = 0;
         defaultCam.Priority = 10;
@@ -30,6 +53,7 @@ public class SCR_HoldAndCamera : MonoBehaviour{
     }
 
     public void Readied(){
+        startPos = Input.mousePosition;
         readied = true;
     }
 }
