@@ -10,6 +10,7 @@ public class SCR_ActiveCollisions : MonoBehaviour{
     [SerializeField] float maxVelocity;
     [SerializeField] SCR_RotManager rotScript;
     [SerializeField] SCR_Glow glowScript;
+    [SerializeField] SCR_FadeAudio audioScript;
     
     List<SCR_SpeedCalc> activeCollisions = new List<SCR_SpeedCalc>();
     List<ParticleSystem> activeParticles = new List<ParticleSystem>();
@@ -71,7 +72,9 @@ public class SCR_ActiveCollisions : MonoBehaviour{
     }
 
     void UpdateRotations(){
-        rotScript.SetSpeed(GetMaxRank()+1);
+        int rank = GetMaxRank()+1;
+        rotScript.SetSpeed(rank);
+        audioScript.SetVolume(rank);
     }
 
     void UpdateGlow(){

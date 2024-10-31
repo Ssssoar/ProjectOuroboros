@@ -4864,3 +4864,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   particleSyst: {fileID: 1033925189845371220}
+  sounds: {fileID: 11400000, guid: daaeb70f4544deb4a9bd5691cdd1f301, type: 2}

@@ -28,7 +28,7 @@ public class SCR_FaceSpritesHandler : MonoBehaviour{
 
 
     void Start(){
-        ChangeMood(Mood.angry);
+        ChangeMood(Mood.normal);
     }
 
     void Update(){
