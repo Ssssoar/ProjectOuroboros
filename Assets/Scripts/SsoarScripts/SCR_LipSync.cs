@@ -58,6 +58,7 @@ public class SCR_LipSync : MonoBehaviour{
     }
     
     public void ReleaseOverride(){
+        toOverride.sr.sprite = GetSprite(faceScript.currentMood,Phoneme.mmh);
         toOverride.overtake = false;
     }
 
