@@ -16,12 +16,17 @@ public class SCR_ChargeManager : MonoBehaviour{
     [SerializeField] SCR_MultiBar barScript;
     [SerializeField] int maxCharge,currentCharge;
     [SerializeField] float drainTime;
-    
+    [SerializeField] float chrageBlockTime;
+
+    float blockTimer = -1f;    
     float drainTimer;
     bool drain;
     bool blocked = false;
 
     public void Update(){
+        if (blockTimer >= 0f){
+            blockTimer -= Time.deltaTime;
+        }
         if (!drain) return;
         drainTimer -= Time.deltaTime;
         if (drainTimer <= 0f){
@@ -39,7 +44,7 @@ public class SCR_ChargeManager : MonoBehaviour{
     }
 
     public void Charge(){
-        if (blocked) return;
+        if ((blocked)||(blockTimer >= 0f)) return;
         currentCharge++;
         if (currentCharge > maxCharge){
             blocked = true;
@@ -53,6 +58,7 @@ public class SCR_ChargeManager : MonoBehaviour{
 
     [ContextMenu("Deplete")]
     public void Deplete(){
+        blockTimer = chrageBlockTime;
         currentCharge = 0;
         barScript.ChangeValue(0);
     }

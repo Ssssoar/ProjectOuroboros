@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Evadir : MonoBehaviour
 {
+    public bool available;
     public BoxCollider2D areaDeRestriccionMovimiento;
     Vector2 upRight, upLeft, downRight, downLeft;
     public float velocidad;
@@ -26,16 +27,18 @@ public class Evadir : MonoBehaviour
     {
         DefinirBordes();
     }
-    private void OnMouseDown()
+    void OnMouseDown()
     {
-
+        Debug.Log("MOUSE DOWN");
+        if (!available) return;
         screenPoint = Camera.main.WorldToScreenPoint(gameObject.transform.position);
         offset = gameObject.transform.position - Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, screenPoint.z));
         startDrag = true;
     }
 
-    private void OnMouseUp()
+    void OnMouseUp()
     {
+        if (!available) return;
         startDrag = false;
 
 
@@ -43,6 +46,10 @@ public class Evadir : MonoBehaviour
 
     private void Update()
     {
+        if (!available) {
+            startDrag = false;
+            return;
+        }
         if(startDrag)
         {
             Vector3 posActual = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, screenPoint.z)) + offset;

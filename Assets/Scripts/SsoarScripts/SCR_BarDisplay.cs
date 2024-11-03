@@ -9,7 +9,7 @@ public class SCR_BarDisplay : MonoBehaviour{
     [SerializeField] int current,max;
     [SerializeField] float lerpStrength;
     [SerializeField] Transform empty,full;
-    float targetFill,currentFill;
+    float targetFill,currentFill = 0f;
     bool moveMode = false;
 
     void Start(){
@@ -50,7 +50,13 @@ public class SCR_BarDisplay : MonoBehaviour{
     }
 
     void UpdateBar(){
+        /*Debug.Log(currentFill);
+        Debug.Log(targetFill);
+        Debug.Log(lerpStrength);*/
         currentFill = Mathf.Lerp(currentFill , targetFill , lerpStrength);
+        if (float.IsNaN(currentFill)){
+            currentFill = 0f;
+        }
         if (!moveMode){
             barImg.fillAmount = currentFill;
         }else{

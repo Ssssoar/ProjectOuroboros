@@ -15,4 +15,8 @@ public class SCR_Lerp2Positions : MonoBehaviour{
             transform.position = Vector3.Lerp(transform.position,offPos.position,lerpStrength);
         }
     }
+
+    public void TurnOn(){
+        on = true;
+    }
 }
