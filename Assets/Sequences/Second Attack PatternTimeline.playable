@@ -1565,7 +1565,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Time: 9.25
   m_Retroactive: 0
-  m_EmitOnce: 0
+  m_EmitOnce: 1
   m_Asset: {fileID: 11400000, guid: a5383be3c9815374bb2b83609836a789, type: 2}
 --- !u!74 &-2981699910562014620
 AnimationClip:

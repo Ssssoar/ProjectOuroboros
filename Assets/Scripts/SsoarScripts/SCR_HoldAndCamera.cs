@@ -10,6 +10,7 @@ public class SCR_HoldAndCamera : MonoBehaviour{
     [Header("References")]
     [SerializeField] PlayableDirector director;
     [SerializeField] UnityEvent onUnreadyRelease;
+    [SerializeField] UnityEvent onExecuted;
     [SerializeField] CinemachineVirtualCamera defaultCam , focusCam;
 
     [Header("Parameters")]
@@ -28,7 +29,7 @@ public class SCR_HoldAndCamera : MonoBehaviour{
             endPos = Input.mousePosition;
             Vector2 displacement = endPos - startPos;
             if (displacement.x >= treshold){
-                Debug.Log("HAPPENED");
+                onExecuted?.Invoke();
             }
         }
     }

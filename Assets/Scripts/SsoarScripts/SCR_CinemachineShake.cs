@@ -11,6 +11,9 @@ public class SCR_CinemachineShake : MonoBehaviour{
         else instance = this;
     }
     [SerializeField] CinemachineVirtualCamera virtualCam;
+    [SerializeField] float strongInten,strongDecay;
+
+
     float decayFactor;
     CinemachineBasicMultiChannelPerlin shake;
 
@@ -21,6 +24,10 @@ public class SCR_CinemachineShake : MonoBehaviour{
     public void ShakeCamera(float intensity, float decay){
         shake.m_AmplitudeGain = intensity;
         decayFactor = decay;
+    }
+
+    public void StrongShake(){
+        ShakeCamera(strongInten,strongDecay);
     }
 
     void Update(){

@@ -39,13 +39,17 @@ public class SCR_FaceSpritesHandler : MonoBehaviour{
         }
     }
 
+    public void Activate(){
+        DEBUGMODE = true;
+    }
+
     void SendBeat(){
         foreach(PartGroup part in faceParts){
             part.partScript.TryChange();
         }
     }
 
-    void ChangeMood(Mood newMood){
+    public void ChangeMood(Mood newMood){
         currentMood = newMood;
         foreach(PartGroup part in faceParts){
             List<Sprite> totalSprites = part.wildcardSprites;
@@ -60,5 +64,9 @@ public class SCR_FaceSpritesHandler : MonoBehaviour{
             }
             part.partScript.NewList(totalSprites);
         }
+    }
+    
+    public void ChangeMood(int newMood){
+        ChangeMood((Mood)newMood);
     }
 }
