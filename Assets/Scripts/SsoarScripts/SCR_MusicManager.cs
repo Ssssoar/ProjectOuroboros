@@ -16,6 +16,9 @@ public class SCR_MusicManager : MonoBehaviour{
 
     public void FadeOut(){
         fadeOutTimer = fadeOutTime;
+    }
+
+    public void Switch(){
         audioSource.clip = musicPerStage[SCR_PhaseAwareness.instance.phase];
     }
 }

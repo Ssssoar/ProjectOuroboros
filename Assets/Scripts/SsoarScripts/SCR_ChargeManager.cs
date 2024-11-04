@@ -22,6 +22,7 @@ public class SCR_ChargeManager : MonoBehaviour{
     float drainTimer;
     bool drain;
     bool blocked = false;
+    int debugCount = 0;
 
     public void Update(){
         if (blockTimer >= 0f){
@@ -34,8 +35,7 @@ public class SCR_ChargeManager : MonoBehaviour{
             barScript.ChangeValue(currentCharge,maxCharge);
             if (currentCharge != 0)
                 drainTimer += drainTime/maxCharge;
-            else
-                drain = false;
+            drain = false;
         }
     }
 
@@ -44,6 +44,8 @@ public class SCR_ChargeManager : MonoBehaviour{
     }
 
     public void Charge(){
+        //Debug.Log(debugCount);
+        debugCount ++;
         if ((blocked)||(blockTimer >= 0f)) return;
         currentCharge++;
         if (currentCharge > maxCharge){
@@ -61,6 +63,7 @@ public class SCR_ChargeManager : MonoBehaviour{
         blockTimer = chrageBlockTime;
         currentCharge = 0;
         barScript.ChangeValue(0);
+        debugCount = 0;
     }
 
     public void TESTDEBUG(){
@@ -76,5 +79,12 @@ public class SCR_ChargeManager : MonoBehaviour{
         drain = false;
         currentCharge = maxCharge;
         barScript.ChangeValue(currentCharge,maxCharge);
+    }
+
+    public void NewMaxCharge(int maxx){
+        maxCharge = maxx;
+        currentCharge = 0;
+        barScript.ChangeValue(currentCharge,maxCharge);
+        blocked = false;
     }
 }

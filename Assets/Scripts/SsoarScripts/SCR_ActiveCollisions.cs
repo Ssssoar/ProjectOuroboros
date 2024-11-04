@@ -38,6 +38,8 @@ public class SCR_ActiveCollisions : MonoBehaviour{
             int index = activeCollisions.IndexOf(spdScript);
             activeCollisions.Remove(spdScript);
             activeParticles[index].Stop();
+            if (!gameObject.activeInHierarchy)
+                Destroy(activeParticles[index].gameObject);
             activeParticles.RemoveAt(index);
             particleRanks.RemoveAt(index);
             UpdateRotations();

@@ -14,6 +14,11 @@ public class SCR_TextWriter : MonoBehaviour{
         textComp.text = texts[currentText];
     }
 
+    public void ShowLine(int line){
+        currentText = line;
+        textComp.text = texts[currentText];
+    }
+
     public void Reset(){
         currentText = -1;
         AdvanceText();

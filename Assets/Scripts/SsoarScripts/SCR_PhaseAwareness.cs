@@ -15,4 +15,8 @@ public class SCR_PhaseAwareness : MonoBehaviour{
     public void Advance(){
         phase++;
     }
+
+    public void SetTo(int newPhase){
+        phase = newPhase;
+    }
 }

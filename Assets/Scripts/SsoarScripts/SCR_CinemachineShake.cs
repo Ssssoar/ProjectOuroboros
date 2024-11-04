@@ -12,6 +12,7 @@ public class SCR_CinemachineShake : MonoBehaviour{
     }
     [SerializeField] CinemachineVirtualCamera virtualCam;
     [SerializeField] float strongInten,strongDecay;
+    [SerializeField] float smallInten,smallDecay;
 
 
     float decayFactor;
@@ -28,6 +29,10 @@ public class SCR_CinemachineShake : MonoBehaviour{
 
     public void StrongShake(){
         ShakeCamera(strongInten,strongDecay);
+    }
+
+    public void SmallShake(){
+        ShakeCamera(smallInten,smallDecay);
     }
 
     void Update(){
