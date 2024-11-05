@@ -3969,7 +3969,7 @@ MonoBehaviour:
   minMove: 0.2
   maxMove: 6
   lerpStrength: 0.03
-  BPM: 60
+  BPM: 95
 --- !u!1001 &308982074
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5026,7 +5026,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   available: 1
   areaDeRestriccionMovimiento: {fileID: 621218052}
-  velocidad: 10
+  velocidad: 100000
 --- !u!58 &374542690
 CircleCollider2D:
   m_ObjectHideFlags: 0
