@@ -17,12 +17,14 @@ public class SCR_ChargeManager : MonoBehaviour{
     [SerializeField] int maxCharge,currentCharge;
     [SerializeField] float drainTime;
     [SerializeField] float chrageBlockTime;
-
+    [SerializeField] int gameOversBeforeIncrease = 2;
     float blockTimer = -1f;    
     float drainTimer;
     bool drain;
     bool blocked = false;
     int debugCount = 0;
+    int chargeCount = 1;
+    int gameOverCount = 0;
 
     public void Update(){
         if (blockTimer >= 0f){
@@ -45,9 +47,9 @@ public class SCR_ChargeManager : MonoBehaviour{
 
     public void Charge(){
         //Debug.Log(debugCount);
-        debugCount ++;
+        debugCount += chargeCount;
         if ((blocked)||(blockTimer >= 0f)) return;
-        currentCharge++;
+        currentCharge += chargeCount;
         if (currentCharge > maxCharge){
             blocked = true;
             onFullCharge?.Invoke();
@@ -57,6 +59,13 @@ public class SCR_ChargeManager : MonoBehaviour{
 
     }
 
+    public void SignalGameOver(){
+        gameOverCount ++;
+        if (gameOverCount >= gameOversBeforeIncrease){
+            chargeCount++;
+            gameOverCount = 0;
+        }
+    }
 
     [ContextMenu("Deplete")]
     public void Deplete(){
