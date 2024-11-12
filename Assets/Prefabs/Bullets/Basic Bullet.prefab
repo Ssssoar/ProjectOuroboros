@@ -163,7 +163,7 @@ MonoBehaviour:
   handling: 250
   target: {fileID: 0}
   lifeTime: 4
-  onBeginChase:
+  beginChase:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 6448417941733395468}
@@ -178,7 +178,34 @@ MonoBehaviour:
           m_StringArgument: Basic Slowdown
           m_BoolArgument: 0
         m_CallState: 2
-  onDie:
+  onTrigger:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1155284110443641742}
+        m_TargetAssemblyTypeName: SCR_ChaseBullet, Assembly-CSharp
+        m_MethodName: Stop
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 4733096990945658599}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+  onClean:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 6056288812158701449}
@@ -193,8 +220,8 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 6450268072125927565}
-        m_TargetAssemblyTypeName: SCR_ShakeSender, Assembly-CSharp
+      - m_Target: {fileID: 8778826799574007933}
+        m_TargetAssemblyTypeName: SCR_SoundSender, Assembly-CSharp
         m_MethodName: Send
         m_Mode: 1
         m_Arguments:
@@ -203,6 +230,18 @@ MonoBehaviour:
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 6448417941733395468}
+        m_TargetAssemblyTypeName: UnityEngine.Animator, UnityEngine
+        m_MethodName: Play
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: Explode
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!58 &2231353193447350497
@@ -5156,13 +5195,15 @@ GameObject:
   - component: {fileID: 2862149851052569166}
   - component: {fileID: 5800942323616221442}
   - component: {fileID: 7381647120161675875}
+  - component: {fileID: 6399023048625836353}
+  - component: {fileID: 4438010228024919766}
   m_Layer: 0
   m_Name: Warning Circle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1883318684904663383
 Transform:
   m_ObjectHideFlags: 0
@@ -5338,6 +5379,43 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &6399023048625836353
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4733096990945658599}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1aa6d3e0467d1a641868ebdd1714e161, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sr: {fileID: 2862149851052569166}
+  colors:
+  - {r: 1, g: 0.44705883, b: 0, a: 0.8}
+  - {r: 1, g: 0, b: 0.011764706, a: 0.8}
+--- !u!95 &4438010228024919766
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4733096990945658599}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 9d409e451c3a7b84f9687b506d5e42f9, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &5841135440846677996
 GameObject:
   m_ObjectHideFlags: 0

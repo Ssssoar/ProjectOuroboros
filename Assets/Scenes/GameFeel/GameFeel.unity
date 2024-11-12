@@ -11944,7 +11944,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: -125.999985, y: 37}
+  m_AnchoredPosition: {x: -126, y: 37}
   m_SizeDelta: {x: 53.929077, y: -97.96118}
   m_Pivot: {x: 0.5, y: 0}
 --- !u!114 &633868812
@@ -16918,7 +16918,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: -189.99998, y: 37}
+  m_AnchoredPosition: {x: -190, y: 37}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1184698626
@@ -18503,12 +18503,42 @@ MonoBehaviour:
   m_Events:
     m_Signals:
     - {fileID: 11400000, guid: 5c7dba306ee21c34a827e26d35e9d200, type: 2}
+    - {fileID: 11400000, guid: a5383be3c9815374bb2b83609836a789, type: 2}
+    - {fileID: 11400000, guid: 2b73f90de6b06fa4dbfcc24b42582e04, type: 2}
     m_Events:
     - m_PersistentCalls:
         m_Calls:
         - m_Target: {fileID: 1313130832}
           m_TargetAssemblyTypeName: SCR_BulletManager, Assembly-CSharp
-          m_MethodName: KillBullets
+          m_MethodName: CleanBullets
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+    - m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1313130832}
+          m_TargetAssemblyTypeName: SCR_BulletManager, Assembly-CSharp
+          m_MethodName: ActivateBullets
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+    - m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1313130832}
+          m_TargetAssemblyTypeName: SCR_BulletManager, Assembly-CSharp
+          m_MethodName: TriggerBullets
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
@@ -22408,6 +22438,8 @@ PlayableDirector:
     value: {fileID: 302670494}
   - key: {fileID: -359903670731817607, guid: ffbb8a2221185ce48829484dcbe370ed, type: 2}
     value: {fileID: 1629633102}
+  - key: {fileID: -3903580344331074695, guid: ffbb8a2221185ce48829484dcbe370ed, type: 2}
+    value: {fileID: 1313130833}
   m_ExposedReferences:
     m_References: []
 --- !u!4 &1815339428
