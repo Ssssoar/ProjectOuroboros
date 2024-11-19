@@ -23,4 +23,8 @@ public class SCR_ShakeWhenEnabled : MonoBehaviour{
         displacement *= shakeDistance;
         transform.position = startPos + displacement;
     }
+
+    void OnDisable(){
+        transform.position = startPos;
+    }
 }
