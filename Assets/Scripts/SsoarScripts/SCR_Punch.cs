@@ -25,14 +25,20 @@ public class SCR_Punch : MonoBehaviour , Damager{
 
     [Header("References")]
     [SerializeField] PunchBuilder[] prePunches;
+    [SerializeField] Animator animComp;
 
     [Header("Parameters")]
     [SerializeField] float lerpStrength;
+    [SerializeField] float strongLerpStrength;
+    [SerializeField] string chargeAnimation;
+    [SerializeField] string punchAnimation;
 
     [Header("Variables")]
     bool activated = false;
+    bool punching = false;
     Punch[] availablePunches;
     Punch activePunch;
+    Vector3 activeDirection;
 
     void Start(){
         availablePunches = BuildPunches(prePunches);
@@ -55,20 +61,30 @@ public class SCR_Punch : MonoBehaviour , Damager{
 
     void FixedUpdate(){
         if (!activated) return;
-        Debug.Log(Time.deltaTime);
-        transform.position = Vector3.Lerp(transform.position, activePunch.from , lerpStrength * Time.deltaTime);
+        if(!punching){
+            transform.position = Vector3.Lerp(transform.position, activePunch.from , lerpStrength * Time.deltaTime);
+            transform.right = Vector3.Slerp(transform.right, activeDirection, lerpStrength * Time.deltaTime);
+        }else{
+            transform.position = Vector3.Lerp(transform.position, activePunch.to, strongLerpStrength * Time.deltaTime);
+        }
     }
 
     public void Initiate(){
+        if (activated) return;
         activated = true;
         activePunch = RandomPunch();
         SCR_BulletManager.instance.bullets.Add(this);
+        activeDirection = (activePunch.to - activePunch.from).normalized;
     }
 
     public void Activate(){
+        activePunch.warningZone.SetActive(true);
+        animComp.Play(chargeAnimation);
     }
 
     public void Trigger(){
+        punching = true;
+        animComp.Play(punchAnimation);
     }
 
     public void Clean(){
