@@ -10,7 +10,7 @@ public class SCR_ShakeWhenEnabled : MonoBehaviour{
     Vector3 startPos;
 
     void Start(){
-        startPos = transform.position;
+        startPos = transform.localPosition;
     }
 
     void Update(){
@@ -21,10 +21,10 @@ public class SCR_ShakeWhenEnabled : MonoBehaviour{
             0f
         );
         displacement *= shakeDistance;
-        transform.position = startPos + displacement;
+        transform.localPosition = startPos + displacement;
     }
 
     void OnDisable(){
-        transform.position = startPos;
+        transform.localPosition = startPos;
     }
 }

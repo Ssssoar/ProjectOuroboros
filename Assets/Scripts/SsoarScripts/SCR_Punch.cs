@@ -29,19 +29,25 @@ public class SCR_Punch : MonoBehaviour , Damager{
 
     [Header("Parameters")]
     [SerializeField] float lerpStrength;
-    [SerializeField] float strongLerpStrength;
+    [SerializeField] float returnLerpStrength;
+    [SerializeField] float punchPosition;
     [SerializeField] string chargeAnimation;
     [SerializeField] string punchAnimation;
 
     [Header("Variables")]
     bool activated = false;
     bool punching = false;
+    bool initiated = false;
     Punch[] availablePunches;
     Punch activePunch;
     Vector3 activeDirection;
+    Vector3 restingPosition;
+    Vector3 restingRight;
 
     void Start(){
         availablePunches = BuildPunches(prePunches);
+        restingPosition = transform.position;
+        restingRight = transform.right;
     }
 
     Punch[] BuildPunches(PunchBuilder[] prePunches){
@@ -60,33 +66,49 @@ public class SCR_Punch : MonoBehaviour , Damager{
     }
 
     void FixedUpdate(){
-        if (!activated) return;
+        if (!activated){
+            transform.position = Vector3.Lerp(transform.position, restingPosition, returnLerpStrength * Time.deltaTime);
+            transform.right = Vector3.Slerp(transform.right, restingRight, returnLerpStrength * Time.deltaTime);
+            return;
+        }
         if(!punching){
             transform.position = Vector3.Lerp(transform.position, activePunch.from , lerpStrength * Time.deltaTime);
             transform.right = Vector3.Slerp(transform.right, activeDirection, lerpStrength * Time.deltaTime);
         }else{
-            transform.position = Vector3.Lerp(transform.position, activePunch.to, strongLerpStrength * Time.deltaTime);
+            transform.position = Vector3.Lerp(transform.position, activePunch.to, punchPosition);
+            if (punchPosition >= 1f)
+                EndPunch();
         }
     }
 
     public void Initiate(){
-        if (activated) return;
-        activated = true;
+        if (initiated) return;
+        initiated = true;
         activePunch = RandomPunch();
         SCR_BulletManager.instance.bullets.Add(this);
         activeDirection = (activePunch.to - activePunch.from).normalized;
     }
 
     public void Activate(){
-        activePunch.warningZone.SetActive(true);
+        activated = true;
         animComp.Play(chargeAnimation);
     }
 
     public void Trigger(){
-        punching = true;
-        animComp.Play(punchAnimation);
+        activePunch.warningZone.SetActive(true);
     }
 
     public void Clean(){
+        punching = true;
+        activePunch.warningZone.SetActive(false);
+        animComp.Play(punchAnimation);
+    }
+
+    public void EndPunch(){
+        if (!initiated) return;
+        punching = false;
+        activated = false;
+        initiated = false;
+        SCR_BulletManager.instance.RemoveBullet(this);
     }
 }
