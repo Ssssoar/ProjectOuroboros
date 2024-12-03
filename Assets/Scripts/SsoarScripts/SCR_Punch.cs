@@ -26,6 +26,7 @@ public class SCR_Punch : MonoBehaviour , Damager{
     [Header("References")]
     [SerializeField] PunchBuilder[] prePunches;
     [SerializeField] Animator animComp;
+    [SerializeField] SCR_Lerper lerper;
 
     [Header("Parameters")]
     [SerializeField] float lerpStrength;
@@ -33,21 +34,18 @@ public class SCR_Punch : MonoBehaviour , Damager{
     [SerializeField] float punchPosition;
     [SerializeField] string chargeAnimation;
     [SerializeField] string punchAnimation;
+    [SerializeField] bool facingRight;
 
     [Header("Variables")]
-    bool activated = false;
+    //bool activated = false;
     bool punching = false;
     bool initiated = false;
     Punch[] availablePunches;
     Punch activePunch;
     Vector3 activeDirection;
-    Vector3 restingPosition;
-    Vector3 restingRight;
 
     void Start(){
         availablePunches = BuildPunches(prePunches);
-        restingPosition = transform.position;
-        restingRight = transform.right;
     }
 
     Punch[] BuildPunches(PunchBuilder[] prePunches){
@@ -66,16 +64,8 @@ public class SCR_Punch : MonoBehaviour , Damager{
     }
 
     void FixedUpdate(){
-        if (!activated){
-            transform.position = Vector3.Lerp(transform.position, restingPosition, returnLerpStrength * Time.deltaTime);
-            transform.right = Vector3.Slerp(transform.right, restingRight, returnLerpStrength * Time.deltaTime);
-            return;
-        }
-        if(!punching){
-            transform.position = Vector3.Lerp(transform.position, activePunch.from , lerpStrength * Time.deltaTime);
-            transform.right = Vector3.Slerp(transform.right, activeDirection, lerpStrength * Time.deltaTime);
-        }else{
-            transform.position = Vector3.Lerp(transform.position, activePunch.to, punchPosition);
+        if (punching){
+            lerper.controlValue = punchPosition;
             if (punchPosition >= 1f)
                 EndPunch();
         }
@@ -90,8 +80,9 @@ public class SCR_Punch : MonoBehaviour , Damager{
     }
 
     public void Activate(){
-        activated = true;
+        //activated = true;
         animComp.Play(chargeAnimation);
+        lerper.StartMove(activePunch.from , (facingRight)? activeDirection : -activeDirection, lerpStrength);
     }
 
     public void Trigger(){
@@ -102,13 +93,17 @@ public class SCR_Punch : MonoBehaviour , Damager{
         punching = true;
         activePunch.warningZone.SetActive(false);
         animComp.Play(punchAnimation);
+        lerper.StartMove(activePunch.to, transform.right);
+        lerper.StartControl();
     }
 
     public void EndPunch(){
         if (!initiated) return;
         punching = false;
-        activated = false;
+        //activated = false;
         initiated = false;
         SCR_BulletManager.instance.RemoveBullet(this);
+        lerper.EndControl();
+        lerper.ReturnMove();
     }
 }

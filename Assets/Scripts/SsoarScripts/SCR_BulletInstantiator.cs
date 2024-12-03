@@ -14,5 +14,4 @@ public class SCR_BulletInstantiator : MonoBehaviour{
         SCR_ChaseBullet newBullet = Instantiate(shots[i].bulletPrefab , transform.position , Quaternion.identity);
         newBullet.target = shots[i].target;
     }
-
 }
