@@ -5009,6 +5009,8 @@ PlayableDirector:
     value: {fileID: 1313130833}
   - key: {fileID: 6504896661061112524, guid: c5e861020e8650042912c31a51b9009c, type: 2}
     value: {fileID: 633868818}
+  - key: {fileID: 5917538313676083977, guid: c5e861020e8650042912c31a51b9009c, type: 2}
+    value: {fileID: 302670494}
   m_ExposedReferences:
     m_References: []
 --- !u!1 &327121427
@@ -23147,6 +23149,8 @@ PlayableDirector:
     value: {fileID: 1994115254}
   - key: {fileID: -9024778248977946874, guid: cbb810f0dee345b4fa8d5a56675ab80f, type: 2}
     value: {fileID: 194865624}
+  - key: {fileID: -2936464478757384846, guid: cbb810f0dee345b4fa8d5a56675ab80f, type: 2}
+    value: {fileID: 302670494}
   m_ExposedReferences:
     m_References: []
 --- !u!1 &1585704111
@@ -28052,6 +28056,8 @@ PlayableDirector:
     value: {fileID: 1965675677}
   - key: {fileID: -8455262170471540145, guid: 5d354b99aab83a542bcd0bccdb131ccc, type: 2}
     value: {fileID: 194865624}
+  - key: {fileID: 3143677115273387320, guid: 5d354b99aab83a542bcd0bccdb131ccc, type: 2}
+    value: {fileID: 222600763}
   m_ExposedReferences:
     m_References: []
 --- !u!114 &2075716997
