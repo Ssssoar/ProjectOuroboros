@@ -40,7 +40,7 @@ public class SCR_BulletInstantiator : MonoBehaviour{
     public void ShootEnd(){
         animComp.Play(shootEndAnim);
         lerper.EndControl();
-        //lerper.ReturnMove();
+        lerper.ReturnMove();
         controlling = false;
     }
 }

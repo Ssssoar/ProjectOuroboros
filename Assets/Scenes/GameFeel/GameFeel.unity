@@ -1823,7 +1823,7 @@ TrailRenderer:
       serializedVersion: 2
       key0: {r: 0.93207544, g: 0.18149275, b: 0.17410459, a: 1}
       key1: {r: 1, g: 0.22244869, b: 0, a: 1}
-      key2: {r: 0.9960785, g: 0.96470594, b: 0.07450981, a: 0}
+      key2: {r: 0, g: 0, b: 0, a: 0}
       key3: {r: 0, g: 0, b: 0, a: 0}
       key4: {r: 0, g: 0, b: 0, a: 0}
       key5: {r: 0, g: 0, b: 0, a: 0}
@@ -1831,7 +1831,7 @@ TrailRenderer:
       key7: {r: 0, g: 0, b: 0, a: 0}
       ctime0: 48959
       ctime1: 65535
-      ctime2: 65458
+      ctime2: 0
       ctime3: 0
       ctime4: 0
       ctime5: 0
@@ -1846,7 +1846,7 @@ TrailRenderer:
       atime6: 0
       atime7: 0
       m_Mode: 0
-      m_ColorSpace: 0
+      m_ColorSpace: -1
       m_NumColorKeys: 2
       m_NumAlphaKeys: 2
     numCornerVertices: 0
@@ -3134,7 +3134,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &250766729
 Transform:
   m_ObjectHideFlags: 0
@@ -3927,7 +3927,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &297577506
 Transform:
   m_ObjectHideFlags: 0
@@ -4122,6 +4122,7 @@ MonoBehaviour:
     - {fileID: 11400000, guid: bf5d0f47ce9cf8d488cd6b11798813b5, type: 2}
     - {fileID: 11400000, guid: 793c11c4c0e80334e9c256482b59e307, type: 2}
     - {fileID: 11400000, guid: a5383be3c9815374bb2b83609836a789, type: 2}
+    - {fileID: 11400000, guid: a884c5c1ea25a044cbb3546e29df2cfa, type: 2}
     m_Events:
     - m_PersistentCalls:
         m_Calls:
@@ -4331,6 +4332,20 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
+    - m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 302670495}
+          m_TargetAssemblyTypeName: SCR_BulletInstantiator, Assembly-CSharp
+          m_MethodName: ShootEnd
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
 --- !u!114 &302670495
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4344,6 +4359,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lerper: {fileID: 302670503}
+  animComp: {fileID: 302670498}
   shots:
   - target: {fileID: 374542691}
     bulletPrefab: {fileID: 1155284110443641742, guid: a4401ec27729cd2489ff4c7bdfe4f275, type: 3}
@@ -4375,6 +4391,9 @@ MonoBehaviour:
   - {fileID: 435138339}
   - {fileID: 1777767008}
   - {fileID: 2065739290}
+  posControl: 0
+  shootAnim: Bullet
+  shootEndAnim: BulletEnd
 --- !u!114 &302670496
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4454,7 +4473,7 @@ BoxCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 302670492}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Density: 1
   m_Material: {fileID: 0}
   m_IncludeLayers:
@@ -5485,7 +5504,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &350349550
 Transform:
   m_ObjectHideFlags: 0
@@ -17270,7 +17289,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1049516522
 Transform:
   m_ObjectHideFlags: 0
@@ -20751,7 +20770,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1320401556
 Transform:
   m_ObjectHideFlags: 0
@@ -23477,7 +23496,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1629633101
 Transform:
   m_ObjectHideFlags: 0
@@ -24521,7 +24540,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1738231063
 Transform:
   m_ObjectHideFlags: 0
@@ -25022,7 +25041,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1815339426
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -28093,7 +28112,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &2100186714
 Transform:
   m_ObjectHideFlags: 0
