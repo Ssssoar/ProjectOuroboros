@@ -18,6 +18,7 @@ public class SCR_ChargeManager : MonoBehaviour{
     [SerializeField] float drainTime;
     [SerializeField] float chrageBlockTime;
     [SerializeField] int gameOversBeforeIncrease = 2;
+    [SerializeField] [Range(0f,1f)] float chargeLoss;
     float blockTimer = -1f;    
     float drainTimer;
     bool drain;
@@ -56,7 +57,6 @@ public class SCR_ChargeManager : MonoBehaviour{
             currentCharge = maxCharge;
         }
         barScript.ChangeValue(currentCharge,maxCharge);
-
     }
 
     public void SignalGameOver(){
@@ -70,8 +70,10 @@ public class SCR_ChargeManager : MonoBehaviour{
     [ContextMenu("Deplete")]
     public void Deplete(){
         blockTimer = chrageBlockTime;
-        currentCharge = 0;
-        barScript.ChangeValue(0);
+        int lost = (int)Mathf.Floor(maxCharge * chargeLoss);
+        currentCharge -= lost;
+        if (currentCharge < 0) currentCharge = 0;
+        barScript.ChangeValue(currentCharge);
         debugCount = 0;
     }
 
