@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class Evadir : MonoBehaviour{
     public bool available;
@@ -48,5 +49,10 @@ public class Evadir : MonoBehaviour{
             posActual.y = Mathf.Clamp(posActual.y, downLeft.y, upRight.y);
             transform.position = Vector3.Lerp(transform.position, posActual, velocidad * Time.deltaTime);
         }
+    }
+
+    public void InputMovement(InputAction.CallbackContext context){
+        Debug.Log(context.phase);
+        Debug.Log(context.ReadValue<Vector2>());
     }
 }
