@@ -5,6 +5,7 @@ using UnityEngine.Events;
 
 public class SCR_ChaseBullet : MonoBehaviour , Damager{
     [SerializeField] float speed;
+    [SerializeField] float speedFactor;
     [SerializeField] float handling;
     public Transform target;
     [SerializeField] float lifeTime;
@@ -35,7 +36,7 @@ public class SCR_ChaseBullet : MonoBehaviour , Damager{
         /*transform.right = Vector3.RotateTowards(transform.right , directLine , handling * Time.deltaTime , 0f);
         transform.eulerAngles = new Vector3(0f,0f,transform.eulerAngles.z);*/
         if (moving)
-            transform.Translate(Vector3.right * speed * Time.deltaTime);
+            transform.Translate(Vector3.right * speed * speedFactor * Time.deltaTime);
     }
 
     public void Activate(){
