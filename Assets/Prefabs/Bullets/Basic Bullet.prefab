@@ -246,6 +246,7 @@ MonoBehaviour:
           m_StringArgument: Explode
           m_BoolArgument: 0
         m_CallState: 2
+  particle: {fileID: 4316121559964974316}
 --- !u!58 &2231353193447350497
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -347,7 +348,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 40db77932466d93428316805f3a75475, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 0.75
+  m_Volume: 0.1
   m_Pitch: 1
   Loop: 0
   Mute: 0

@@ -12,6 +12,7 @@ public class SCR_ChaseBullet : MonoBehaviour , Damager{
     [SerializeField] UnityEvent beginChase;
     [SerializeField] UnityEvent onTrigger;
     [SerializeField] UnityEvent onClean;
+    [SerializeField] GameObject particle;
 
     bool turning = false;
     bool moving = false;
@@ -41,6 +42,8 @@ public class SCR_ChaseBullet : MonoBehaviour , Damager{
 
     public void Activate(){
         //BEGIN CHASING
+        if (particle != null)
+            particle.SetActive(false);
         turning = true;
         moving = true;
         beginChase?.Invoke();

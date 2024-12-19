@@ -34,10 +34,11 @@ public class SCR_Punch : MonoBehaviour , Damager{
     [SerializeField] float punchPosition;
     [SerializeField] string chargeAnimation;
     [SerializeField] string punchAnimation;
+    [SerializeField] string defaultAnimation;
     [SerializeField] bool facingRight;
 
     [Header("Variables")]
-    //bool activated = false;
+    bool activated = false;
     bool punching = false;
     bool initiated = false;
     Punch[] availablePunches;
@@ -80,16 +81,20 @@ public class SCR_Punch : MonoBehaviour , Damager{
     }
 
     public void Activate(){
-        //activated = true;
+        if (activated) return;
+        if (punching) animComp.Play(defaultAnimation);
+        activated = true;
         animComp.Play(chargeAnimation);
         lerper.StartMove(activePunch.from , (facingRight)? activeDirection : -activeDirection, lerpStrength);
     }
 
     public void Trigger(){
         activePunch.warningZone.SetActive(true);
+        if (punching) animComp.Play(defaultAnimation);
     }
 
     public void Clean(){
+        initiated = false;
         punching = true;
         activePunch.warningZone.SetActive(false);
         animComp.Play(punchAnimation);
@@ -98,11 +103,11 @@ public class SCR_Punch : MonoBehaviour , Damager{
     }
 
     public void EndPunch(){
-        if (!initiated) return;
         punching = false;
-        //activated = false;
+        activated = false;
         initiated = false;
         SCR_BulletManager.instance.RemoveBullet(this);
+        animComp.Play(defaultAnimation);
         lerper.EndControl();
         lerper.ReturnMove();
     }

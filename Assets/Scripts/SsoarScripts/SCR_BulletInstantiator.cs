@@ -20,9 +20,9 @@ public class SCR_BulletInstantiator : MonoBehaviour{
 
     public void PreShoot(){
         Transform chosenPos = shotPositions[Random.Range(0,shotPositions.Length)];
+        animComp.Play(shootAnim);
         lerper.StartControl();
         lerper.StartMove(chosenPos.position, -transform.position.normalized);
-        animComp.Play(shootAnim);
         controlling = true;
     }
 

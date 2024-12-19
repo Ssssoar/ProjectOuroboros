@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.Playables;
 
 public class SCR_GameOverManager : MonoBehaviour{
+
     [SerializeField] PlayableDirector[] gameOverSequences;
     public void GameOver(){
         int phase = SCR_PhaseAwareness.instance.phase;
