@@ -9,15 +9,27 @@ public class SCR_BulletManager : MonoBehaviour{
         else instance = this;
     }
 
-    internal List<SCR_ChaseBullet> bullets = new List<SCR_ChaseBullet>();
+    internal List<Damager> bullets = new List<Damager>();
 
-    public void RemoveBullet(SCR_ChaseBullet bullet){
+    public void RemoveBullet(Damager bullet){
         bullets.Remove(bullet);
     }
 
-    public void KillBullets(){
-        foreach (SCR_ChaseBullet bullet in bullets){
-            bullet.Kill();
+    public void ActivateBullets(){
+        foreach(Damager bullet in bullets){
+            bullet.Activate();
+        }
+    }
+
+    public void TriggerBullets(){
+        foreach(Damager bullet in bullets){
+            bullet.Trigger();
+        }
+    }
+
+    public void CleanBullets(){
+        foreach (Damager bullet in bullets){
+            bullet.Clean();
         }
     }
 }

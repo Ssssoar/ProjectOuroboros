@@ -3,14 +3,19 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
-public class SCR_ChaseBullet : MonoBehaviour{
+public class SCR_ChaseBullet : MonoBehaviour , Damager{
     [SerializeField] float speed;
+    [SerializeField] float speedFactor;
     [SerializeField] float handling;
     public Transform target;
     [SerializeField] float lifeTime;
-    [SerializeField] UnityEvent onBeginChase;
-    [SerializeField] UnityEvent onDie;
-    bool began = false;
+    [SerializeField] UnityEvent beginChase;
+    [SerializeField] UnityEvent onTrigger;
+    [SerializeField] UnityEvent onClean;
+    [SerializeField] GameObject particle;
+
+    bool turning = false;
+    bool moving = false;
 
     void Start(){
         transform.right = target.position - transform.position;
@@ -18,14 +23,7 @@ public class SCR_ChaseBullet : MonoBehaviour{
     }
 
     void FixedUpdate(){
-        lifeTime -= Time.deltaTime;
-        if (lifeTime <= 0f){
-            Kill();
-        }else if (speed != 0f){
-            if (!began){
-                onBeginChase?.Invoke();
-                began = true;
-            }
+        if (turning){
             Vector3 directLine = target.position - transform.position;
             float angle = Vector2.SignedAngle(transform.right,directLine);
             float angleSign = 0f;
@@ -33,20 +31,43 @@ public class SCR_ChaseBullet : MonoBehaviour{
             float finalRot = angleSign * handling * Time.deltaTime;
             if (Mathf.Abs(finalRot) > Mathf.Abs(angle)) finalRot = angle;
             transform.Rotate(0f,0f,angleSign * handling * Time.deltaTime);
-
-
-            /*transform.right = Vector3.RotateTowards(transform.right , directLine , handling * Time.deltaTime , 0f);
-            transform.eulerAngles = new Vector3(0f,0f,transform.eulerAngles.z);*/
-            transform.Translate(Vector3.right * speed * Time.deltaTime); 
         }
+
+
+        /*transform.right = Vector3.RotateTowards(transform.right , directLine , handling * Time.deltaTime , 0f);
+        transform.eulerAngles = new Vector3(0f,0f,transform.eulerAngles.z);*/
+        if (moving)
+            transform.Translate(Vector3.right * speed * speedFactor * Time.deltaTime);
     }
 
-    public void Kill(){
-        onDie?.Invoke();
+    public void Activate(){
+        //BEGIN CHASING
+        if (particle != null)
+            particle.SetActive(false);
+        turning = true;
+        moving = true;
+        beginChase?.Invoke();
+    }
+
+    public void Trigger(){
+        onTrigger?.Invoke();
+    }
+
+    public void Clean(){
+        onClean?.Invoke();
+    }
+
+    public void Eliminate(){
         Destroy(gameObject);
     }
 
     void OnDestroy(){
         SCR_BulletManager.instance.RemoveBullet(this);
+    }
+
+    public void Stop(){
+        speed = 0f;
+        turning = false;
+        moving = false;
     }
 }
