@@ -169,6 +169,10 @@ PrefabInstance:
       propertyPath: onBeginChase.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_StringArgument
       value: Faster Slowdown
       objectReference: {fileID: 0}
+    - target: {fileID: 1602889317396020020, guid: a4401ec27729cd2489ff4c7bdfe4f275, type: 3}
+      propertyPath: m_Volume
+      value: 0.1
+      objectReference: {fileID: 0}
     - target: {fileID: 3306226750975473896, guid: a4401ec27729cd2489ff4c7bdfe4f275, type: 3}
       propertyPath: m_Name
       value: DirectBullet
